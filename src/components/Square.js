@@ -2,8 +2,8 @@
 
 const Square = () => {
     return(
-        <div>
-            <h1>Square component</h1>
+        <div className="w-20 h-20 bg-slate-100 border-2 border-spacing-5 border-gray-600">
+            
         </div>
     )
 }
