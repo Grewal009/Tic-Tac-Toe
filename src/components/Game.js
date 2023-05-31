@@ -11,7 +11,7 @@ const Game = () => {
 
     let status;
     if(winner){
-        status = `Winner : ${winner} 👍`;
+        status = `Winner : ${winner?.player} 👍`;
     }else if(count === 9){
         status = `Game Over`;
     }
@@ -49,21 +49,21 @@ const Game = () => {
         <div> <h1 className='text-center text-xl font-bold mb-1'>{status}</h1>
         <div className='w-[240px] border-2 border-gray-600 bg-green-200'>
             <div className='flex'>
-                <Square value={squares[0]} onSquareClick={()=>handleClick(0)}/>
-                <Square value={squares[1]} onSquareClick={()=>handleClick(1)}/>
-                <Square value={squares[2]} onSquareClick={()=>handleClick(2)}/>
+                <Square value={squares[0]} onSquareClick={()=>handleClick(0)} isWinning={winner?.line?.includes(0)}/>
+                <Square value={squares[1]} onSquareClick={()=>handleClick(1)} isWinning={winner?.line?.includes(1)}/>
+                <Square value={squares[2]} onSquareClick={()=>handleClick(2)} isWinning={winner?.line?.includes(2)}/>
             </div>
 
             <div className='flex'>
-                <Square value={squares[3]} onSquareClick={()=>handleClick(3)}/>
-                <Square value={squares[4]} onSquareClick={()=>handleClick(4)}/>
-                <Square value={squares[5]} onSquareClick={()=>handleClick(5)}/>
+                <Square value={squares[3]} onSquareClick={()=>handleClick(3)} isWinning={winner?.line?.includes(3)}/>
+                <Square value={squares[4]} onSquareClick={()=>handleClick(4)} isWinning={winner?.line?.includes(4)}/>
+                <Square value={squares[5]} onSquareClick={()=>handleClick(5)} isWinning={winner?.line?.includes(5)}/>
             </div>
 
             <div className='flex'>
-                <Square value={squares[6]} onSquareClick={()=>handleClick(6)}/>
-                <Square value={squares[7]} onSquareClick={()=>handleClick(7)}/>
-                <Square value={squares[8]} onSquareClick={()=>handleClick(8)}/>
+                <Square value={squares[6]} onSquareClick={()=>handleClick(6)} isWinning={winner?.line?.includes(6)}/>
+                <Square value={squares[7]} onSquareClick={()=>handleClick(7)} isWinning={winner?.line?.includes(7)}/>
+                <Square value={squares[8]} onSquareClick={()=>handleClick(8)} isWinning={winner?.line?.includes(8)}/>
             </div>
             
         </div>
@@ -96,7 +96,11 @@ function calculateWinner(squares){
     for(let i = 0; i < lines.length; i++){
         const [a, b, c] = lines[i];
         if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
-            return squares[a];
+            return {
+                player : squares[a],
+                line : lines[i]
+            }
+            
         }
     }
     return null;
