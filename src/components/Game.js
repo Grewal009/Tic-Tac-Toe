@@ -4,13 +4,18 @@ import Square from './Square';
 const Game = () => {
     const [squares, setSquares] = useState(Array(9).fill(null));
     const [xIsNext, setXIsNext] = useState(true);
+    const [count, setCount] = useState(0);
+    
 
     const winner = calculateWinner(squares);
 
     let status;
     if(winner){
         status = `Winner : ${winner} 👍`;
-    }else{
+    }else if(count === 9){
+        status = `Game Over`;
+    }
+    else{
         status = `Next Player : ${xIsNext ? 'X':'O'}`;
     }
 
@@ -29,11 +34,14 @@ const Game = () => {
         }
         
         setSquares(nextSquare);
+        setCount(count+1);
+        console.log(count);
     }
 
     function playAgain(){
         setSquares(Array(9).fill(null));
         setXIsNext(true);
+        setCount(0);
     }
 
     return(
@@ -60,14 +68,14 @@ const Game = () => {
             
         </div>
         {
-            !winner
+            winner || count === 9
             ?(
                 <div className='flex justify-center'>
-        <button className='mt-2 w-28 py-1 text-gray-800 text-sm font-medium bg-slate-300 hover:bg-slate-400 rounded-xl opacity-0'>Play again</button>
+        <button onClick={playAgain} className='mt-2 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl '>Play again</button>
         </div>
             ) :(
                 <div className='flex justify-center'>
-        <button onClick={playAgain} className='mt-2 w-28 py-1 text-gray-800 text-sm font-medium bg-slate-300 hover:bg-slate-400 rounded-xl'>Play again</button>
+        <button  className='mt-2 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl opacity-0'>Play again</button>
         </div>
             )
         }
