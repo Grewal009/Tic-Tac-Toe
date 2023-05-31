@@ -46,7 +46,7 @@ const Game = () => {
 
     return(
     <div className='w-screen h-screen bg-green-100 flex justify-center items-center'>
-        <div> <h1 className='text-center text-xl font-bold mb-1'>{status}</h1>
+        <div> <h1 className='text-center text-xl font-bold mb-2'>{status}</h1>
         <div className='w-[240px] border-2 border-gray-600 bg-green-200'>
             <div className='flex'>
                 <Square value={squares[0]} onSquareClick={()=>handleClick(0)} isWinning={winner?.line?.includes(0)}/>
@@ -71,11 +71,11 @@ const Game = () => {
             winner || count === 9
             ?(
                 <div className='flex justify-center'>
-        <button onClick={playAgain} className='mt-2 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl '>Play again</button>
+        <button onClick={playAgain} className='mt-3 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl '>Play again</button>
         </div>
             ) :(
                 <div className='flex justify-center'>
-        <button  className='mt-2 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl opacity-0'>Play again</button>
+        <button  className='mt-3 w-28 py-2 text-gray-800 text-lg font-semibold bg-slate-300 hover:bg-slate-400 rounded-xl opacity-0 pointer-events-none'>Play again</button>
         </div>
             )
         }
