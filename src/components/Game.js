@@ -31,6 +31,11 @@ const Game = () => {
         setSquares(nextSquare);
     }
 
+    function playAgain(){
+        setSquares(Array(9).fill(null));
+        setXIsNext(true);
+    }
+
     return(
     <div className='w-screen h-screen bg-red-200 flex justify-center items-center'>
         <div> <h1 className='text-center text-xl font-bold mb-1'>{status}</h1>
@@ -62,7 +67,7 @@ const Game = () => {
         </div>
             ) :(
                 <div className='flex justify-center'>
-        <button className='mt-2 w-28 py-1 text-gray-800 text-sm font-medium bg-slate-300 hover:bg-slate-400 rounded-xl'>Play again</button>
+        <button onClick={playAgain} className='mt-2 w-28 py-1 text-gray-800 text-sm font-medium bg-slate-300 hover:bg-slate-400 rounded-xl'>Play again</button>
         </div>
             )
         }
