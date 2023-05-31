@@ -45,7 +45,7 @@ const Game = () => {
     }
 
     return(
-    <div className='w-screen h-screen bg-red-200 flex justify-center items-center'>
+    <div className='w-screen h-screen bg-green-100 flex justify-center items-center'>
         <div> <h1 className='text-center text-xl font-bold mb-1'>{status}</h1>
         <div className='w-[240px] border-2 border-gray-600 bg-green-200'>
             <div className='flex'>
